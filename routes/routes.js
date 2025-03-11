@@ -8,10 +8,6 @@ app.use(express.json());
 app.get('/', function (req, res) {
     res.send({ message: 'Hello, world!' });
 });
-// app.use(jwtCheck);
-// app.get('/authorized', function (req, res) {
-//     res.send('Secured Resource');
-// });
 
 app.get('/alcool', function (req, res) {
     client.query('SELECT shop_item.id, alcohol_id, shop_id, price, name, image FROM shop_item INNER JOIN alcohol ON alcohol.id = shop_item.alcohol_id;')

@@ -1,8 +1,16 @@
-# React + Vite
+# ShopAlcool 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+site réaliser durant le module Archi-N-Tiers. 
 
-Currently, two official plugins are available:
+La partie front-end à été réaliser par Noa Lauvray,
+La partie api à été réaliser par Kévin Marie et Eliazid Boulaamail, 
+Le workflow github Action et gitLab ont été réaliser par nous 3 en appel sur Discord.
+On a réfléchis en ensemble et Eliazid à coder en partage d'écran.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Configuration :
+Avant de commencer le prérequis est d'avoir nodejs
+
+pour lancer le serveur vite pour le front end faire : 
+    npm run dev
+pour lancer le serveur back-end faire :
+    npm run start
