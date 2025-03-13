@@ -24,7 +24,7 @@ jobs:
         run: npm install --save-dev
 
       - name: Run ESLint
-        run: npx eslint src --fix
+        run: node --loader=ts-node/esm node_modules/.bin/eslint src --fix
 
   sonarcloud:
     runs-on: ubuntu-latest
