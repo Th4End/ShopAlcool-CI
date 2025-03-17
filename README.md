@@ -4,7 +4,7 @@ site réaliser durant le module Archi-N-Tiers.
 
 La partie front-end à été réaliser par Noa Lauvray,
 La partie api à été réaliser par Kévin Marie et Eliazid Boulaamail, 
-Le workflow github Action et gitLab ont été réaliser par nous 3 en appel sur Discord.
+Le workflow github Action à été réaliser par nous 3 en appel sur Discord.
 On a réfléchis en ensemble et Eliazid à coder en partage d'écran.
 
 # Configuration :
