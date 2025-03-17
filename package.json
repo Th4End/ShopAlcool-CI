@@ -2,9 +2,9 @@
     "name": "shop_alcool",
     "version": "1.0.0",
     "description": "Restfull api for a alcohol shop",
-    "main": "index.js",
+    "main": "backend/server/server.js",
     "scripts": {
-        "start": "nodemon -r dotenv/config server/server.js",
+        "start": "nodemon -r dotenv/config backend/server/server.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "vite",
         "build": "vite build",
