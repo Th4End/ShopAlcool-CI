@@ -1,8 +1,8 @@
-const js = require('@eslint/js');
-const globals = require('globals')
-const react = require('react')
-const reactHooks = require('eslint-plugin-react-hooks')
-const reactRefresh = require('eslint-plugin-react-refresh')
+import js from '@eslint/js';
+import globals from'globals'
+import react from 'react'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
   { ignores: ['dist'] },
