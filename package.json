@@ -1,5 +1,6 @@
 {
     "name": "shop_alcool",
+    "type" : "module",
     "version": "1.0.0",
     "description": "Restfull api for a alcohol shop",
     "main": "backend/server/server.js",
