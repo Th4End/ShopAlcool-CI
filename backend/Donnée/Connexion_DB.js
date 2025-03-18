@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { Client } from 'pg';
+const { Client } = require('pg');
 console.log(process.env.USER);
 console.log(process.env.DATABASE);
 const client = new Client({
@@ -15,8 +15,6 @@ const client = new Client({
     ca: process.env.CA
   }
 });
-
-
 
 client.connect()
   .then(() => {

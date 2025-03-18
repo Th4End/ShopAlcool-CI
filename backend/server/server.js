@@ -3,7 +3,7 @@ import cors from "cors";
 const app = express();
 
 const PORT = 3000;
-import routes from '../routes/routes';
+import routes from '../routes/routes.js';
 app.use(cors());
 app.use(routes);
 app.use(json());

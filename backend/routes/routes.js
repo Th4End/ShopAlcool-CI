@@ -1,6 +1,5 @@
 import { Router, json } from 'express';
 const app = Router();
-import { query } from '../Donnée/Connexion_DB';
 
 app.use(json());
 
