@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Container, Grid, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';

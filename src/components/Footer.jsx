@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Box, Container, Grid, Typography, Link } from "@mui/joy";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';

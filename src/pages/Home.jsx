@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState, useContext } from "react";
 import { Container, Grid, Box, Typography, Input, Select, Option } from "@mui/joy";
 import ProductCard from "../components/ProductCard";

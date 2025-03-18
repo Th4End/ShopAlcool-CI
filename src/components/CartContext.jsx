@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React, { createContext, useState } from 'react';
 
-export const CartContext = createContext();
+const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
@@ -15,3 +16,5 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+
+export default CartContext;

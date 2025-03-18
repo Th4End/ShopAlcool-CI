@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -13,9 +14,9 @@ import { CartProvider } from './context/CartContext';
 
 function App() {
   return (
-    <CartProvider>
-      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-        <Router>
+    <Router>
+      <CartProvider>
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Navbar />
           <Box sx={{ flex: 1 }}>
             <Routes>
@@ -29,9 +30,9 @@ function App() {
             </Routes>
           </Box>
           <Footer />
-        </Router>
-      </Box>
-    </CartProvider>
+        </Box>
+      </CartProvider>
+    </Router>
   );
 }
 

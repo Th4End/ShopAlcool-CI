@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import { Container, Typography, List, ListItem, ListItemText } from '@mui/material';
 import { CartContext } from '../components/CartContext';

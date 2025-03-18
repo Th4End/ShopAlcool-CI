@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Card, Box, Chip, IconButton, Typography, AspectRatio } from "@mui/joy";
 import { motion } from "framer-motion";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
