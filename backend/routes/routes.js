@@ -12,8 +12,8 @@ app.get('/alcool', async (req, res) => {
     try {
         const result = await query('SELECT shop_item.id, alcohol_id, shop_id, price, name, image FROM shop_item INNER JOIN alcohol ON alcohol.id = shop_item.alcohol_id;');
         
-        if (result.rows.length === 0) {
-            console.log(result.rows); 
+        if (result.length === 0) {
+            console.log(result); 
             return res.status(404).send({ message: 'Aucun alcool trouvé' });
         }
         res.status(200).send(result.rows);

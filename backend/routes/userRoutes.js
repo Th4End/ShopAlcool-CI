@@ -8,54 +8,33 @@ import { query } from '../Donnée/Connexion_DB';
 const router = Router();
 const SECRET_KEY = process.env.SECRET_KEY || 'mon_secret';
 
-router.post('/login', async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        const result = await query('SELECT * FROM users WHERE email = $1', [email]);
-
-        if (result.rows.length === 0) {
-            return res.status(401).json({ message: 'Email ou mot de passe incorrect' });
-        }
-        
-        const user = result.rows[0]; 
-        const isPasswordValid = await compare(password, user.password);
-        
-        if (!isPasswordValid) {
-            return res.status(401).json({ message: 'Email ou mot de passe incorrect' });
-        }
-        
-        const token = sign({ id: user.id, email: user.email }, SECRET_KEY, { expiresIn: '24h' });
-        res.json({ message: 'Connexion réussie', token });
-    } catch (error) {
-        console.error('Erreur lors de la connexion:', error); 
-        res.status(500).json({ message: 'Erreur interne du serveur' });
-    }
-});
-
 // 🔹 Connexion d'un utilisateur
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
     // Récupérer l'utilisateur par email
-    const user = await query("SELECT * FROM users WHERE email = $1", [email]);
+    const result = await query("SELECT * FROM users WHERE email = $1", [email]);
 
-    if (user.rows.length === 0) {
+    if (result.rows.length === 0) {
       return res.status(401).json({ message: "Email ou mot de passe incorrect" });
     }
 
+    const user = result.rows[0];
+
     // Vérifier le mot de passe
-    const isPasswordValid = await compare(password, user.rows[0].password);
+    const isPasswordValid = await compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Email ou mot de passe incorrect" });
     }
 
     // Générer un token JWT
-    const token = sign({ id: user.rows[0].id, email: user.rows[0].email }, SECRET_KEY, { expiresIn: "24h" });
+    const token = sign({ id: user.id, email: user.email }, SECRET_KEY, { expiresIn: "24h" });
 
     res.json({ message: "Connexion réussie", token });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error('Erreur lors de la connexion:', error);
+    res.status(500).json({ message: "Erreur interne du serveur" });
   }
 });
 
@@ -72,12 +51,13 @@ router.get("/profile", async (req, res) => {
 
     // Récupérer l'utilisateur depuis la BDD
     const result = await query("SELECT id, name, email FROM users WHERE id = $1", [decoded.id]);
-    if (result.rows.length === 0) {  // ✅ Utilise `result.rows`
+    if (result.rows.length === 0) {  
       return res.status(404).json({ message: "Utilisateur non trouvé" });
     }
-    
-    res.json(user.rows[0]);
+
+    res.json(result.rows[0]);
   } catch (error) {
+    console.error("Erreur lors de la récupération du profil:", error);
     res.status(401).json({ message: "Token invalide" });
   }
 });
