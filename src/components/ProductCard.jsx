@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { Card, Box, Chip, IconButton, Typography, AspectRatio } from "@mui/joy";
+import PropTypes from 'prop-types';
+import { Card, Box, IconButton, Typography, AspectRatio } from "@mui/joy";
 import { motion } from "framer-motion";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const ProductCard = ({ product, addToCart }) => {
-
   return (
     <Card
       component={motion.div}
@@ -88,6 +88,17 @@ const ProductCard = ({ product, addToCart }) => {
       </Box>
     </Card>
   );
+};
+
+// 🔹 Validation des props avec PropTypes
+ProductCard.propTypes = {
+  product: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  }).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

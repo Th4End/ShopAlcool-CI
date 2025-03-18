@@ -13,7 +13,7 @@ const Cart = () => {
       </Typography>
       <List>
         {cart.map((product, index) => (
-          <ListItem key={index}>
+         <ListItem key={product.id}>
             <ListItemText
               primary={product.name}
               secondary={`$${product.price}`}

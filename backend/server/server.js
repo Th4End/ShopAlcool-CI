@@ -2,6 +2,7 @@ import express, { json } from "express";
 import cors from "cors";
 
 const app = express();
+app.disable("x-powered-by");
 const PORT = 3000;
 import routes from "../routes/routes.js";
 

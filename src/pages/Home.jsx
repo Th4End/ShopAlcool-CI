@@ -19,8 +19,8 @@ const Home = () => {
 
   const filteredProducts = products
     .filter(product => 
-      (product.name && product.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (product.description && product.description.toLowerCase().includes(searchTerm.toLowerCase()))
+      product.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      product.description?.toLowerCase().includes(searchTerm.toLowerCase())
     )
     .sort((a, b) => {
       if (sortOption === "price-asc") return a.price - b.price;
@@ -70,7 +70,7 @@ const Home = () => {
         <Typography level="h2" sx={{ mb: 4, textAlign: 'center', fontWeight: 700 }}>
           Featured Products
         </Typography>
-        <Grid container spacing={4}> {/* Ensure enough spacing between cards */}
+        <Grid container spacing={4}>
           {filteredProducts.map((product) => (
             <Grid item xs={12} sm={6} md={4} key={product.id}>
               <ProductCard product={product} addToCart={addToCart} />

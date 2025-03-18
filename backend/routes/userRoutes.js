@@ -42,7 +42,7 @@ router.post("/login", async (req, res) => {
 router.get("/profile", async (req, res) => {
   try {
     const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    if (!authHeader?.startsWith("Bearer ")) {
       return res.status(401).json({ message: "Token manquant ou invalide" });
     }
 
