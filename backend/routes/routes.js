@@ -1,5 +1,4 @@
-import { Router, json } from 'express';
-import { query } from 'express'
+import { Router, json, query } from 'express';
 
 const app = Router();
 

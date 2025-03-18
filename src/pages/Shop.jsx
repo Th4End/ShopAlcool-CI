@@ -1,13 +1,10 @@
 /* eslint-disable no-unused-vars */
-import { Container, Grid, Typography, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Container, Grid, Typography } from '@mui/material';
 import ProductCard from '../components/ProductCard';
 import { useEffect, useState, useContext } from 'react';
-import { CartContext } from '../components/CartContext';
 import { getProducts } from '../api/api.jsx';
 
 const Shop = () => {
-  const { cart } = useContext(CartContext);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {

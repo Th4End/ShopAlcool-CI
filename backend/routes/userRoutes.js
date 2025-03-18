@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import { Router } from 'express';
-import { hash, compare } from 'bcryptjs';
+import { compare } from 'bcryptjs';
 import { sign, verify } from 'jsonwebtoken';
 import { query } from '../Donnée/Connexion_DB';
 
