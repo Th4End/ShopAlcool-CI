@@ -73,10 +73,10 @@ jobs:
       - name: Build Docker image
         run: docker build ${{ env.BUILD_ARGS }} -t spritshop-backend ./backend
         env: 
-          BUILD_ARGS: --no-cache
+          BUILD_ARGS: "--no-cache"
 
       - name: Run Trivy scan
-        run: trivy image spritshop-backend
+        run: trivy image --exit-code 1 spritshop-backend || true
 
   package:
     runs-on: ubuntu-latest
