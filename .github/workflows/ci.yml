@@ -24,7 +24,7 @@ jobs:
         run: npm install --save-dev
 
       - name: Run ESLint
-        run: node --loader=ts-node/esm node_modules/.bin/eslint src --fix
+        run: npx eslint src --fix
 
   sonarcloud:
     runs-on: ubuntu-latest
@@ -49,11 +49,12 @@ jobs:
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
             -Dsonar.sources=src \
-            - name: Fetch SonarCloud Results
-              run: |
-                curl -s "https://sonarcloud.io/api/measures/component?component=${{ secrets.SONAR_PROJECT_KEY }}&metricKeys=coverage,bugs,vulnerabilities,code_smells" > sonar_results.json
-                  cat sonar_results.json
+            -Dsonar.host.url="https://sonarcloud.io"
 
+      - name: Fetch SonarCloud Results
+        run: |
+          curl -s "https://sonarcloud.io/api/measures/component?component=${{ secrets.SONAR_PROJECT_KEY }}&metricKeys=coverage,bugs,vulnerabilities,code_smells" > sonar_results.json
+          cat sonar_results.json
 
   trivy-scan:
     runs-on: ubuntu-latest
