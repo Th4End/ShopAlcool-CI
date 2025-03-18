@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { Container, Grid, Typography } from '@mui/material';
 import ProductCard from '../components/ProductCard';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { getProducts } from '../api/api.jsx';
 
 const Shop = () => {
