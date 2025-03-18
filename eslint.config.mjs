@@ -35,5 +35,8 @@ export default [
       ],
       'no-unused-vars': ['warn'],
     },
+    "env": {
+      "node": true
+    }
   },
 ];

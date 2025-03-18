@@ -1,4 +1,4 @@
-const { Client } = require('pg');
+import { Client } from 'pg';
 console.log(process.env.USER);
 console.log(process.env.DATABASE);
 const client = new Client({
@@ -22,4 +22,4 @@ client.connect()
   .catch(err => {
     console.error('Erreur de connexion:', err);
   })
-module.exports = client;
+export default client;
