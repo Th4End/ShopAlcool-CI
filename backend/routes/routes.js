@@ -1,30 +1,26 @@
 import { Router, json } from 'express';
 const app = Router();
-// import jwtCheck from '../Controller/Auth/Auth';
 import { query } from '../Donnée/Connexion_DB';
 
 app.use(json());
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
     res.send({ message: 'Hello, world!' });
 });
 
-app.get('/alcool', function (req, res) {
-    query('SELECT shop_item.id, alcohol_id, shop_id, price, name, image FROM shop_item INNER JOIN alcohol ON alcohol.id = shop_item.alcohol_id;')
-        .then(result => {
-            if (result.rows.length === 0) {
-                console.log(rows);
-                return res.status(404).send({ message: 'Aucun alcool trouvé' });
-            } else {
-                console.log(result.rows);
-                return res.status(200).send(result.rows);
-            }
-        })
-        .catch(err => {
-            
-            console.error('Erreur de la requête SQL:', err);
-            res.status(500).send({ message: 'Erreur interne du serveur', error: err });
-        });
+app.get('/alcool', async (req, res) => {
+    try {
+        const result = await query('SELECT shop_item.id, alcohol_id, shop_id, price, name, image FROM shop_item INNER JOIN alcohol ON alcohol.id = shop_item.alcohol_id;');
+        
+        if (result.rows.length === 0) {
+            console.log(result.rows); 
+            return res.status(404).send({ message: 'Aucun alcool trouvé' });
+        }
+        res.status(200).send(result.rows);
+    } catch (err) {
+        console.error('Erreur de la requête SQL:', err);
+        res.status(500).send({ message: 'Erreur interne du serveur', error: err });
+    }
 });
 
 app.get('/alcool/:id', function (req, res) {
