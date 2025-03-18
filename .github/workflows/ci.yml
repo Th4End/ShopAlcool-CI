@@ -49,7 +49,7 @@ jobs:
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
             -Dsonar.sources=src \
-            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.host.url=https://sonarcloud.io/project/overview?id=Th4End_ShopAlcool-CI
 
   trivy-scan:
     runs-on: ubuntu-latest

@@ -51,9 +51,8 @@ jobs:
           npx sonar-scanner \
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
-            -Dsonar.host.url="https://sonarcloud.io" \
-            -Dsonar.token=${{ secrets.SONAR_TOKEN }}
-      
+            -Dsonar.sources=src \
+            -Dsonar.host.url="https://sonarcloud.io/project/overview?id=Th4End_ShopAlcool-CI" \
 
   trivy-scan:
     runs-on: ubuntu-latest
