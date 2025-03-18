@@ -29,6 +29,4 @@ app.use(routes);
 
 app.listen(PORT, () => {
    console.log(`🚀 Server API running at http://localhost:3000`);
-   console.log(`🚀 Server SITE running at https://localhost:5173`);
-   console.log(`🚀 Server SONAR running at https://localhost:9000`);
 });
