@@ -45,12 +45,15 @@ jobs:
         working-directory: backend
 
       - name: Run SonarCloud analysis
-        run: npx sonar-scanner
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
-          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
-          SONAR_HOST_URL: "https://sonarcloud.io"
+        run: |
+          npx sonar-scanner \
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
+            -Dsonar.host.url="https://sonarcloud.io" \
+            -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+      
 
   trivy-scan:
     runs-on: ubuntu-latest
