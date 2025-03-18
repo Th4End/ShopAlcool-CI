@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import { Router } from "express";
 import { hash, compare } from "bcryptjs";
 import { sign, verify } from "jsonwebtoken";
@@ -71,9 +74,11 @@ router.get("/profile", async (req, res) => {
     const decoded = verify(token, SECRET_KEY);
 
     // Récupérer l'utilisateur depuis la BDD
-    const user = await query("SELECT id, name, email FROM users WHERE id = $1", [decoded.id]);
-    if (user.rows.length === 0) return res.status(404).json({ message: "Utilisateur non trouvé" });
-
+    const result = await query("SELECT id, name, email FROM users WHERE id = $1", [decoded.id]);
+    if (result.rows.length === 0) {  // ✅ Utilise `result.rows`
+      return res.status(404).json({ message: "Utilisateur non trouvé" });
+    }
+    
     res.json(user.rows[0]);
   } catch (error) {
     res.status(401).json({ message: "Token invalide" });
