@@ -1,15 +1,17 @@
 import { Router, json } from 'express';
+import { query } from 'express'
+
 const app = Router();
 
 app.use(json());
 
-app.get('/', (req, res) => {
+app.get('/', (res) => {
     res.send({ message: 'Hello, world!' });
 });
 
-app.get('/alcool', async (req, res) => {
+app.get('/alcool', async (res) => {
     try {
-        const result = await query('SELECT shop_item.id, alcohol_id, shop_id, price, name, image FROM shop_item INNER JOIN alcohol ON alcohol.id = shop_item.alcohol_id;');
+        const result = query('SELECT shop_item.id, alcohol_id, shop_id, price, name, image FROM shop_item INNER JOIN alcohol ON alcohol.id = shop_item.alcohol_id;');
         
         if (result.length === 0) {
             console.log(result); 
