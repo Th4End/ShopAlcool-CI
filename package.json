@@ -48,7 +48,8 @@
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "react-router-dom": "^7.3.0",
-        "sequelize": "^6.37.5"
+        "sequelize": "^6.37.5",
+        "shop_alcool": "file:"
     },
     "devDependencies": {
         "@eslint/js": "^9.22.0",
