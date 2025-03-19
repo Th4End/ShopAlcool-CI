@@ -2,6 +2,7 @@
 import React, { createContext, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
+
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {

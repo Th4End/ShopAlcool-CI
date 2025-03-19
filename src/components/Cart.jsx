@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import { Container, Typography, List, ListItem, ListItemText } from '@mui/material';
-import { CartContext } from '../components/CartContext';
+import CartContext from './CartContext';
 
 const Cart = () => {
   const { cart } = useContext(CartContext);

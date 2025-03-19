@@ -11,7 +11,7 @@ import {
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
 import Menu from './Menu';
-import { CartContext } from './CartContext';
+import CartContext from './CartContext';  
 
 const Navbar = () => {
   const { cart } = useContext(CartContext);
