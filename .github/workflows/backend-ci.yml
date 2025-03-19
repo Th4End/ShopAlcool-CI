@@ -95,7 +95,6 @@ jobs:
           node-version: 20
 
       - name: Package backend app
-        working-directory: backend
         run: npm pack
 
 
