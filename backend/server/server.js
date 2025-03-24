@@ -6,18 +6,8 @@ app.disable("x-powered-by");
 const PORT = 3000;
 import routes from "../routes/routes.js";
 
-const allowedOrigins = process.env.NODE_ENV === "production"
-  ? ["https://localhost:5173"]
-  : ["http://localhost:3000"];
-
 const corsOptions = {
-   origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-         callback(null, true);
-      } else {
-         callback(new Error("Not allowed by CORS"));
-      }
-   },
+   origin: '*',
    methods: ["GET", "POST", "PUT", "DELETE"], 
    allowedHeaders: ["Content-Type", "Authorization"], 
    credentials: true 

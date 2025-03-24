@@ -1,9 +1,7 @@
 import dotenv from 'dotenv';
+const { Client } = require('pg');
 dotenv.config();
 
-const { Client } = require('pg');
-console.log(process.env.USER);
-console.log(process.env.DATABASE);
 const client = new Client({
   host: process.env.HOST,
   port: process.env.PORT,
