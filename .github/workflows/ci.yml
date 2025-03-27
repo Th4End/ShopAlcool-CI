@@ -67,7 +67,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Build Docker image
-        run: docker build -t spritshop .
+        run: docker build -t spritshop -f ./backend/Dockerfile ./backend
 
       - name: Run Trivy scan
         uses: aquasecurity/trivy-action@master
