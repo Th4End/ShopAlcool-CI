@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express.Router();
-const jwtCheck = require('../backend/Controller/Auth/Auth');
-const client = require('../backend/Donnée/Connexion_DB');
+const jwtCheck = require('../Controller/Auth/Auth.js');
+const client = require('../Donnée/Connexion_DB.js');
 
 app.use(express.json());
 

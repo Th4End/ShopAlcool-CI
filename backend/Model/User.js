@@ -1,4 +1,4 @@
-const pool = require("../server/server");
+const pool = require("../server/server.js");
 
 // 🔹 Création de l'utilisateur
 const createUser = async (name, email, password) => {
