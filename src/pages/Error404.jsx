@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Container, Typography, Button, Box } from '@mui/material';
 import { Link } from 'react-router-dom';

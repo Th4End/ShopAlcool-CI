@@ -1,34 +1,31 @@
-const express = require('express');
-const app = express.Router();
-const jwtCheck = require('../Controller/Auth/Auth.js');
-const client = require('../Donnée/Connexion_DB.js');
+import { Router, json, query } from 'express';
 
-app.use(express.json());
 
-app.get('/', function (req, res) {
+const app = Router();
+
+app.use(json());
+
+app.get('/', (req, res) => {
     res.send({ message: 'Hello, world!' });
 });
 
-app.get('/alcool', function (req, res) {
-    client.query('SELECT shop_item.id, alcohol_id, shop_id, price, name, image FROM shop_item INNER JOIN alcohol ON alcohol.id = shop_item.alcohol_id;')
-        .then(result => {
-            if (result.rows.length === 0) {
-                console.log(rows);
-                return res.status(404).send({ message: 'Aucun alcool trouvé' });
-            } else {
-                console.log(result.rows);
-                return res.status(200).send(result.rows);
-            }
-        })
-        .catch(err => {
-            
-            console.error('Erreur de la requête SQL:', err);
-            res.status(500).send({ message: 'Erreur interne du serveur', error: err });
-        });
+app.get('/alcool', async (req, res) => {
+    try {
+        const result = query('SELECT shop_item.id, alcohol_id, shop_id, price, name, image FROM shop_item INNER JOIN alcohol ON alcohol.id = shop_item.alcohol_id;');
+        
+        if (result.length === 0) {
+            console.log(result); 
+            return res.status(404).send({ message: 'Aucun alcool trouvé' });
+        }
+        res.status(200).send(result.rows);
+    } catch (err) {
+        console.error('Erreur de la requête SQL:', err);
+        res.status(500).send({ message: 'Erreur interne du serveur', error: err });
+    }
 });
 
 app.get('/alcool/:id', function (req, res) {
-    client.query('SELECT shop_item.id, alcohol_id, shop_id, price, type_alcohol_id, name, description, degree, capacity, image FROM shop_item INNER JOIN alcohol ON alcohol.id = shop_item.alcohol_id WHERE shop_item.alcohol_id = $1;', [req.params.id])
+    query('SELECT shop_item.id, alcohol_id, shop_id, price, type_alcohol_id, name, description, degree, capacity, image FROM shop_item INNER JOIN alcohol ON alcohol.id = shop_item.alcohol_id WHERE shop_item.alcohol_id = $1;', [req.params.id])
         .then(result => {
             if (result.rows.length === 0) {
                 return res.status(404).send({ message: 'Aucun alcool trouvé' });
@@ -44,7 +41,7 @@ app.get('/alcool/:id', function (req, res) {
 
 app.post('/alcool', function (req, res) {
     const { type_alcohol_id, name, description, degree, capacity, image } = req.body;
-    client.query('INSERT INTO alcohol (type_alcohol_id, name, description, degree, capacity, image) VALUES ($1, $2, $3, $4, $5, $6)', [type_alcohol_id, name, description, degree, capacity, image])
+    query('INSERT INTO alcohol (type_alcohol_id, name, description, degree, capacity, image) VALUES ($1, $2, $3, $4, $5, $6)', [type_alcohol_id, name, description, degree, capacity, image])
         .then(result => {
             res.status(201).send(result.rows[0]);
         })
@@ -56,7 +53,7 @@ app.post('/alcool', function (req, res) {
 
 app.patch('/alcool/:id', function (req, res) {
     const { type_alcohol_id, name, description, degree, capacity, image, id } = req.body;
-    client.query('UPDATE alcohol SET type_alcohol_id = $1, name = $2, description = $3, degree = $4, capacity = $5, image = $6 WHERE id = $7', [type_alcohol_id, name, description, degree, capacity, image, id])
+    query('UPDATE alcohol SET type_alcohol_id = $1, name = $2, description = $3, degree = $4, capacity = $5, image = $6 WHERE id = $7', [type_alcohol_id, name, description, degree, capacity, image, id])
         .then(result => {
             if (result.rows.length === 0) {
                 return res.status(404).send({ message: 'Aucun alcool trouvé' });
@@ -71,7 +68,7 @@ app.patch('/alcool/:id', function (req, res) {
 });
 
 app.delete('/alcool/:id', function (req, res) {
-    client.query('DELETE FROM shop_item WHERE id = $1', [req.params.id])
+    query('DELETE FROM shop_item WHERE id = $1', [req.params.id])
         .then(result => {
             if (result.rowCount === 0) {
                 return res.status(404).send({ message: 'Aucun alcool trouvé' });
@@ -85,4 +82,4 @@ app.delete('/alcool/:id', function (req, res) {
         });
 });
 
-module.exports = app;
+export default app;

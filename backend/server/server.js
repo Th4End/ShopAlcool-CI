@@ -1,14 +1,22 @@
-const express = require("express");
-const cors = require("cors");
-const app = express();
+import express, { json } from "express";
+import cors from "cors";
 
+const app = express();
+app.disable("x-powered-by");
 const PORT = 3000;
-const routes = require('../routes/routes.js');
-app.use(cors());
+import routes from "../routes/routes.js";
+
+const corsOptions = {
+   origin: '*',
+   methods: ["GET", "POST", "PUT", "DELETE"], 
+   allowedHeaders: ["Content-Type", "Authorization"], 
+   credentials: true 
+};
+
+app.use(cors(corsOptions));
+app.use(json());
 app.use(routes);
-app.use(express.json());
-app.use(cors());
 
 app.listen(PORT, () => {
-   console.log(`🚀 Server running at http://localhost:${PORT}`);
+   console.log(`🚀 Server API running at http://localhost:3000`);
 });

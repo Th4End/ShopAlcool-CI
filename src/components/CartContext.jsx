@@ -1,6 +1,9 @@
-import React, { createContext, useState } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { createContext, useState, useMemo } from 'react';
+import PropTypes from 'prop-types';
 
-export const CartContext = createContext();
+
+const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
@@ -9,9 +12,18 @@ export const CartProvider = ({ children }) => {
     setCart((prevCart) => [...prevCart, product]);
   };
 
+  const contextValue = useMemo(() => ({ cart, addToCart }), [cart]);
+
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={contextValue}>
       {children}
     </CartContext.Provider>
   );
 };
+
+// 🔹 Validation des props
+CartProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default CartContext;
